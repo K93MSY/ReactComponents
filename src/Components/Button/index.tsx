@@ -2,21 +2,29 @@ import { useState, useEffect } from "react";
 
 export default function Button(props: any) {
   const [btncolor, setBtncolor] = useState("#2194ff");
-  const [btnpad, setBtnpad] = useState(4);
+  const [btnpadw, setBtnpadw] = useState(12);
+  const [btnpadh, setBtnpadh] = useState(4);
+  const [btntextsize, setTextSize] = useState(4);
 
   useEffect(() => {
-    props.color === undefined
+    props.OriginalColor === undefined
       ? setBtncolor("#2194ff")
-      : setBtncolor(props.color);
+      : setBtncolor(props.OriginalColor);
     switch (props.size) {
       case "sm":
-        setBtnpad(4);
+        setBtnpadh(0);
+        setBtnpadw(7);
+        setTextSize(14);
         break;
       case "md":
-        setBtnpad(8);
+        setBtnpadh(4);
+        setBtnpadw(15);
+        setTextSize(14);
         break;
       case "lg":
-        setBtnpad(12);
+        setBtnpadh(8);
+        setBtnpadw(18);
+        setTextSize(16);
         break;
     }
   });
@@ -27,10 +35,15 @@ export default function Button(props: any) {
         style={{
           backgroundColor: btncolor,
           border: 0,
-          padding: btnpad,
+          padding: `${btnpadh}px ${btnpadw}px`,
+          borderRadius: 5,
         }}
       >
-        "Hello!"
+        <span
+        style={{
+          fontSize:btntextsize
+        }}
+        >"Hello!"</span>
       </button>
     </>
   );
